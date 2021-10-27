@@ -1,0 +1,12 @@
+13:58:51 **** Rebuild of configuration Debug for project Examen_Laboratorio_I ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Examen_Laboratorio_I.o" "..\\src\\Examen_Laboratorio_I.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Arcade.o" "..\\src\\Arcade.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Utn_tomarDatos.o" "..\\src\\Utn_tomarDatos.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ComprobarErrores.o" "..\\src\\ComprobarErrores.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Salon.o" "..\\src\\Salon.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Informes.o" "..\\src\\Informes.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Auxiliar.o" "..\\src\\Auxiliar.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Menu.o" "..\\src\\Menu.c" 
+gcc -o Examen_Laboratorio_I.exe "src\\Arcade.o" "src\\Auxiliar.o" "src\\ComprobarErrores.o" "src\\Examen_Laboratorio_I.o" "src\\Informes.o" "src\\Menu.o" "src\\Salon.o" "src\\Utn_tomarDatos.o" 
+Info: Nothing to build for Examen_Laboratorio_I
