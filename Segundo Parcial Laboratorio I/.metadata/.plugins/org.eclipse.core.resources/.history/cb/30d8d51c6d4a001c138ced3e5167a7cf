@@ -1,0 +1,22 @@
+/*
+ * EntidadAuxiliar.h
+ *
+ *  Created on: 20 nov 2021
+ *      Author: GONZALO
+ */
+
+#ifndef ENTIDADAUXILIAR_H_
+#define ENTIDADAUXILIAR_H_
+
+#include "LinkedList.h"
+#include "Arcade.h"
+#include "ValidarDatos.h"
+
+#define LEN_NOMBRE_ALFANUMERICO 64
+
+typedef struct
+{
+	char juego[LEN_NOMBRE_ALFANUMERICO];
+}eAuxiliar;
+
+#endif /* ENTIDADAUXILIAR_H_ */

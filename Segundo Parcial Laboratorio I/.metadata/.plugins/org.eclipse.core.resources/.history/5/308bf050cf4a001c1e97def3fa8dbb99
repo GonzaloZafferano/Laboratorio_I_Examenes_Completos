@@ -1,0 +1,29 @@
+/*
+ * EntidadAuxiliar.h
+ *
+ *  Created on: 20 nov 2021
+ *      Author: GONZALO
+ */
+
+#ifndef ENTIDADAUXILIAR_H_
+#define ENTIDADAUXILIAR_H_
+
+#include "LinkedList.h"
+#include "ValidarDatos.h"
+
+#define LEN_NOMBRE_ALFANUMERICO 64
+
+typedef struct
+{
+	char juego[LEN_NOMBRE_ALFANUMERICO];
+}eAuxiliar;
+
+eAuxiliar* eAuxiliar_new();
+void eAuxiliar_delete(eAuxiliar* pElemento);
+int eAuxiliar_getNombreDeJuego(eAuxiliar* pElemento, char* pNombre);
+int eAuxiliar_setNombreDeJuego(eAuxiliar* pElemento, char* pNombre);
+int eAuxiliar_limpiarElementosLista(LinkedList* pLinkedListAuxiliar);
+eAuxiliar* eAuxiliar_newParametrosTexto(char* pNombreJuego);
+int eAuxiliar_imprimirFilaDeDatos(eAuxiliar* pElemento);
+
+#endif /* ENTIDADAUXILIAR_H_ */

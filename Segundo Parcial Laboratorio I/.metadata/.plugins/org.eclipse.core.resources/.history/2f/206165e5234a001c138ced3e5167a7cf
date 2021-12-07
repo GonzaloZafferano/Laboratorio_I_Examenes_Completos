@@ -1,0 +1,176 @@
+#include "parser.h"
+#include "Arcade.h"
+
+#define ARCHIVO_VACIO_O_TERMINADO 1
+#define LEN_SONIDO 20
+#define LEN_ENCABEZADO 100
+#define LEN_NOMBRE 51
+#define LEN_NOMBRE_ALFANUMERICO 64
+#define LEN_INT 10
+#define LEN_FLOAT 20
+#define OPERACION_EXITOSA 0
+#define ERROR_PUNTERO_NULL -1
+#define ERROR_NO_SE_PUDIERON_OBTENER_TODOS_LOS_DATOS -38
+#define ERROR_NO_PUDO_CARGAR_EMPLEADO_A_LA_LISTA -41
+#define ERROR_DATOS_INVALIDOS -43
+
+/** \brief Parsea los datos de los empleados desde el archivo data.csv (modo texto).
+ * \param FILE* pFile - puntero al archivo de texto
+ * \param  LinkedList* pArrayListEmployee - puntero a la lista de empleados
+ * \return int. Retorna 0 si la Operacion es exitosa
+ * 				retorna 1 si es fin del archivo
+ * 				retorna -1 si el puntero apunta a NULL.
+ * 				retorna -41 si no se puede cargar empleado a la lista
+ * 				retorna -43 si se detectan datos invalidos
+ *
+ */
+int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListArcades)
+{
+	char idArcade [LEN_INT];
+	char tipoDeSonido [LEN_INT];
+	char cantidadDeJugadores [LEN_INT];
+	char capacidadMaximaDeFichas [LEN_INT];
+	char nombreJuego [LEN_NOMBRE_ALFANUMERICO];
+	char nombreSalon[LEN_NOMBRE_ALFANUMERICO];
+	char nacionalidad[LEN_NOMBRE];
+	int retorno = ERROR_PUNTERO_NULL;
+	eArcade* pArcade;
+
+	//Employee* pEmpleado;
+	//id, nacionalidad, tiposonido, cantidadjugadores, capacidadfichas, salon,nombrejuego
+
+	if(pFile != NULL && pArrayListArcades != NULL)
+	{
+		retorno = ARCHIVO_VACIO_O_TERMINADO;
+		if(fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n", idArcade, nacionalidad, tipoDeSonido, cantidadDeJugadores, capacidadMaximaDeFichas, nombreSalon, nombreJuego) == 7)
+		{
+			/*printf("---\n%s", idArcade);
+			printf("\n%s", nacionalidad);
+			printf("\n%s", nombreSalon);
+			printf("\n%s", nombreJuego);
+			printf("\n%s", tipoDeSonido);
+			printf("\n%s", cantidadDeJugadores);
+			printf("\n%s---", capacidadMaximaDeFichas);*/
+			retorno = ERROR_DATOS_INVALIDOS;
+			pArcade = eArcade_newParametrosTexto(idArcade, nombreJuego, nacionalidad, nombreSalon, tipoDeSonido, cantidadDeJugadores, capacidadMaximaDeFichas);
+			if(pArcade != NULL)
+			{
+				retorno = ERROR_NO_PUDO_CARGAR_EMPLEADO_A_LA_LISTA;
+				if(!ll_add(pArrayListArcades, pArcade))
+				{
+					retorno = OPERACION_EXITOSA;
+				}
+			}
+		}
+	}
+    return retorno;
+}
+
+/** \brief Parsea los datos de los empleados desde el archivo data.csv (modo binario).
+ * \param FILE* pFile - puntero al archivo binario
+ * \param  LinkedList* pArrayListEmployee - puntero a la lista de empleados
+ * \return int. Retorna 0 si la Operacion es exitosa
+ * 				retorna 1 si es fin del archivo
+ * 				retorna -1 si el puntero apunta a NULL.
+ * 				retorna -38 si no se pudieron obtener todos los datos
+ * 				retorna -41 si no se puede cargar empleado a la lista
+ * 				retorna -43 si se detectan datos invalidos
+ */
+int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
+{
+	int id;
+	float salario;
+	int horasTrabajadas;
+	char nombre[LEN_NOMBRE];
+	Employee* pEmpleado;
+	int retorno = ERROR_PUNTERO_NULL;
+
+	if(pFile != NULL && pArrayListEmployee != NULL)
+	{
+		retorno = ARCHIVO_VACIO_O_TERMINADO;
+		if(fread(&id, sizeof(int), 1, pFile) == 1 &&
+		   fread(nombre, sizeof(nombre), 1, pFile) == 1 &&
+		   fread(&horasTrabajadas, sizeof(int), 1, pFile) == 1 &&
+		   fread(&salario, sizeof(float), 1, pFile) == 1)
+		{
+			retorno = ERROR_DATOS_INVALIDOS;
+			pEmpleado = employee_newParametrosDiferenciandoTiposDeDatos(id, nombre, salario, horasTrabajadas);
+			if(pEmpleado != NULL)
+			{
+				retorno = ERROR_NO_PUDO_CARGAR_EMPLEADO_A_LA_LISTA;
+				if(!ll_add(pArrayListEmployee, pEmpleado))
+				{
+					retorno = OPERACION_EXITOSA;
+				}
+			}
+		}
+	}
+    return retorno;
+}
+
+/** \brief Carga los datos de un empleado desde la lista al archivo de texto.
+ * \param FILE* pFile - puntero al archivo de texto
+ * \param  eArcade* pArcade - puntero al arcade
+ * \return int. Retorna 0 si la Operacion es exitosa
+ * 				retorna -1 si el puntero apunta a NULL.
+ * 				retorna -38 si no se pudieron obtener todos los datos
+ */
+int parser_ArcadeFromText(FILE* pFile, eArcade* pArcade)
+{
+	int idArcade;
+	int cantidadJugadores;
+	int capacidadMaximaFichas;
+	char tipoSonido[LEN_SONIDO];
+	char nacionalidad[LEN_NOMBRE];
+	char nombreJuego[LEN_NOMBRE_ALFANUMERICO];
+	char nombreSalon[LEN_NOMBRE_ALFANUMERICO];
+
+
+	int retorno = ERROR_PUNTERO_NULL;
+
+	if(pArcade != NULL && pFile != NULL)
+	{
+		retorno = ERROR_NO_SE_PUDIERON_OBTENER_TODOS_LOS_DATOS;
+		if(!eArcade_gettersFromArcade(pArcade, &idArcade, nombreJuego, nacionalidad, nombreSalon, tipoSonido, &cantidadJugadores, &capacidadMaximaFichas))
+	//	if(!employee_gettersFromEmployee(pEmpleado, &id, &horasTrabajadas, nombre, &salario))
+		{
+			//id,nacionalidad,tipo_sonido,cant_jug,fichas_max,salon,game
+			fprintf(pFile,"%d,%s,%s,%d,%d,%s,%s\n",idArcade,nacionalidad, tipoSonido, cantidadJugadores, capacidadMaximaFichas, nombreSalon, nombreJuego);
+			retorno = OPERACION_EXITOSA;
+		}
+	}
+	return retorno;
+}
+
+
+/** \brief Carga los datos de un empleado desde la lista al archivo Binario.
+ * \param FILE* pFile - puntero al archivo de texto
+ * \param  Employee* pEmpleado - puntero al empleado
+ * \return int. Retorna 0 si la Operacion es exitosa
+ * 				retorna -1 si el puntero apunta a NULL.
+ * 				retorna -38 si no se pudieron obtener todos los datos
+ */
+int parser_ArcadeFromBinary(FILE* pFile, Employee* pEmpleado)
+{
+	int id;
+	float salario;
+	int horasTrabajadas;
+	char nombre[LEN_NOMBRE];
+	int retorno = ERROR_PUNTERO_NULL;
+
+	if(pEmpleado != NULL && pFile != NULL)
+	{
+		retorno = ERROR_NO_SE_PUDIERON_OBTENER_TODOS_LOS_DATOS;
+		if(!employee_gettersFromEmployee(pEmpleado, &id, &horasTrabajadas, nombre, &salario))
+		{
+			if(fwrite(&id, sizeof(int), 1, pFile) == 1 &&
+			   fwrite(nombre, sizeof(nombre), 1, pFile) == 1 &&
+			   fwrite(&horasTrabajadas, sizeof(int), 1, pFile) == 1 &&
+			   fwrite(&salario, sizeof(float), 1, pFile) == 1)
+			{
+				retorno = OPERACION_EXITOSA;
+			}
+		}
+	}
+	return retorno;
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="liberar"/>
+		<list key="findhistory">
+			<item value="liberar"/>
+			<item value="libe"/>
+			<item value="borr"/>
+			<item value="free"/>
+			<item value="lim"/>
+			<item value="limpiar"/>
+			<item value="ll_map"/>
+			<item value="cargarListaEnArchivo"/>
+			<item value="cargarArchivoArcade"/>
+			<item value="guardarListaEnArchivo"/>
+			<item value="informe_estaJuegoEnLaLista"/>
+			<item value="informe_"/>
+			<item value="ll_ma"/>
+			<item value="eAuxiliar_limpiarElementosLista"/>
+			<item value="eArcade_limpiarElementosLista"/>
+		</list>
+		<list key="replacehistory">
+			<item value="cargarListaEnArchivo"/>
+			<item value="leerArchivo"/>
+			<item value="estaJuegoEnLaLista"/>
+			<item value="eArcade_limpiarElementosLista"/>
+			<item value="guardarListaEnArchivo"/>
+			<item value="ARCHIVO_CSV_CARGADO"/>
+			<item value="cargarListaArcadeEnArchivo"/>
+			<item value="cargarArchivoArcade"/>
+			<item value="pLinkedListArcades"/>
+			<item value="Arcade"/>
+			<item value="pLinkedLists"/>
+			<item value="eArcade"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1354"/>
+		<item key="DIALOG_Y_ORIGIN" value="597"/>
+		<item key="DIALOG_WIDTH" value="336"/>
+		<item key="DIALOG_HEIGHT" value="454"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

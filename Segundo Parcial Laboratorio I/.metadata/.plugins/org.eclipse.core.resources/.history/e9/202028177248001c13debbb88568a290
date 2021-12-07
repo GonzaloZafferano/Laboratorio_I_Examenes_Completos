@@ -1,0 +1,103 @@
+/*
+ * Arcade.h
+ *
+ *  Created on: 17 nov 2021
+ *      Author: GONZALO
+ */
+
+#ifndef ARCADE_H_
+#define ARCADE_H_
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "ComprobarErrores.h"
+#include "Utn_tomarDatos.h"
+#include "LinkedList.h"
+#include "ValidarDatos.h"
+#include "Menu_mensajes.h"
+
+#define LEN_JUEGO 64
+#define LEN_NOMBRE 128
+
+typedef struct
+{
+    int idArcade;
+    int tipoDeSonido;
+    int cantidadJugadores;
+    int capacidadMaximaDeFichas;
+    char nombreJuego[LEN_JUEGO];
+    char nacionalidadArcade[LEN_NOMBRE];
+    char nombreSalon[LEN_NOMBRE];
+}eArcade;
+
+eArcade* eArcade_new();
+eArcade* eArcade_newParametros(char* pIdStr,char* pNombreStr,char* pHorasTrabajadasStr, char* pSalarioStr);
+eArcade* eArcade_newParametrosDiferenciandoTiposDeDatos(int id, char pNombre[],  float salario, int horasTrabajadas);
+void eArcade_delete(eArcade* pEmpleado);
+int eArcade_getDataFromUserToEditAFiel(eArcade* pEmpleado, int opcion);
+void eArcade_ImprimirEncabezadoDeDatos(int opcion);
+void eArcade_ImprimirFilaVaciaDeDatos(int opcion);
+int eArcade_ImprimirFilaDeDatos(eArcade* this, int opcion);
+int eArcade_imprimirUnSoloEmpleado(eArcade* this);
+int eArcade_setSueldo(eArcade* this, float sueldo);
+int eArcade_getSueldo(eArcade* this, float* pSueldo);
+int eArcade_setHorasTrabajadas(eArcade* this, int horasTrabajadas);
+int eArcade_getHorasTrabajadas(eArcade* this, int* pHorasTrabajadas);
+int eArcade_setId(eArcade* this, int id);
+int eArcade_getId(eArcade* this, int* pId);
+int eArcade_setNombre(eArcade* this, char* pNombre);
+int eArcade_getNombre(eArcade* this, char* pNombre);
+int eArcade_setIdTexto(eArcade* pElemento, char* pId);
+int eArcade_setHorasTrabajadasTexto(eArcade* pElemento, char* pHorasTrabajadas);
+int eArcade_setSueldoTexto(eArcade* pElemento, char* pSalario);
+int eArcade_orderByName(void* pElementoUno, void* pElementoDos);
+int eArcade_orderById(void* pElementoUno, void* pElementoDos);
+int eArcade_orderBySalary(void* pElementoUno, void* pElementoDos);
+int eArcade_orderByHoursWorked(void* pElementoUno, void* pElementoDos);
+int eArcade_findeArcadeById(LinkedList* pArrayListeArcade, int id);
+eArcade* eArcade_findPointerToeArcadeById(LinkedList* pArrayListeArcade, int id);
+int eArcade_getDataToAddANeweArcade(char nombre[], int lenNombre, int* pHorasTrabajadas, float* pSalario);
+int eArcade_gettersFromeArcade(eArcade* pEmpleado, int* pId, int* pHorasTrabajadas, char* nombre, float *pSalario);
+int eArcade_getLastOrNextId(int opcion);
+
+
+
+
+
+
+
+
+
+
+//QUEDA OK
+
+
+int eArcade_setId(eArcade* pElemento, int idArcade);
+int eArcade_getId(eArcade* pElemento, int* pIdArcade);
+int eArcade_setTipoDeSonido(eArcade* pElemento, int tipoSonido);
+int eArcade_getTipoDeSonido(eArcade* pElemento, int* tipoDeSonido);
+int eArcade_setCantidadDeJugadores(eArcade* pElemento, int cantidadDeJugadores);
+int eArcade_getCantidadDeJugadores(eArcade* pElemento, int* cantidadDeJugadores);
+int eArcade_setCapacidadMaximaDeFichas(eArcade* pElemento, int capacidadMaximaDeFichas);
+int eArcade_getCapacidadMaximaDeFichas(eArcade* pElemento, int* capacidadMaximaDeFichas);
+int eArcade_setNombreDeJuego(eArcade* pElemento, char* pNombre);
+int eArcade_getNombreDeJuego(eArcade* pElemento, char* pNombre);
+int eArcade_setNacionalidad(eArcade* pElemento, char* pNacionalidad);
+int eArcade_getNacionalidad(eArcade* pElemento, char* pNacionalidad);
+int eArcade_setNombreDeSalon(eArcade* pElemento, char* pNombre);
+int eArcade_getNombreDeSalon(eArcade* pElemento, char* pNombre);
+int eArcade_setCantidadMaximaDeJugadoresTexto(eArcade* pElemento, char* pCantidadMaximaDeJugadores);
+int eArcade_setCapacidadMaximaDeFichasTexto(eArcade* pElemento, char* pCapacidadMaximaDeFichas);
+int eArcade_setTipoDeSonidoTexto(eArcade* pElemento, char* pTipoDeSonido);
+int eArcade_setIdTexto(eArcade* pElemento, char* pId);
+
+
+
+
+
+
+
+
+#endif /* ARCADE_H_ */

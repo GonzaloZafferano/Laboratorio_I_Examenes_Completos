@@ -1,0 +1,22 @@
+/*
+ * parser.h
+ *
+ *  Created on: 5 nov 2021
+ *      Author: GONZALO
+ */
+
+#ifndef PARSER_H_
+#define PARSER_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "LinkedList.h"
+#include "Employee.h"
+#include "Arcade.h"
+
+int parser_ArcadeFromText(FILE* pFile, eArcade* pArcade);
+int parser_ArcadeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee);
+int parser_TextFromArcade(FILE* pFile, eArcade* pArcade);
+int parser_BinaryFromEmployee(FILE* pFile, eArcade* pArcade);
+
+#endif /* PARSER_H_ */

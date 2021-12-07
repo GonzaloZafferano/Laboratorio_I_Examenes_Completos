@@ -1,0 +1,13 @@
+17:19:21 **** Rebuild of configuration Debug for project Examen_Laboratorio_I ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Menu_mensajes.o" "..\\src\\Menu_mensajes.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Utn_tomarDatos.o" "..\\src\\Utn_tomarDatos.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Controller.o" "..\\src\\Controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ValidarDatos.o" "..\\src\\ValidarDatos.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\EntidadAuxiliar.o" "..\\src\\EntidadAuxiliar.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Arcade.o" "..\\src\\Arcade.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LinkedList.o" "..\\src\\LinkedList.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ComprobarErrores.o" "..\\src\\ComprobarErrores.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Examen_Laboratorio_I.o" "..\\src\\Examen_Laboratorio_I.c" 
+gcc -o Examen_Laboratorio_I.exe "src\\Arcade.o" "src\\ComprobarErrores.o" "src\\Controller.o" "src\\EntidadAuxiliar.o" "src\\Examen_Laboratorio_I.o" "src\\LinkedList.o" "src\\Menu_mensajes.o" "src\\Utn_tomarDatos.o" "src\\ValidarDatos.o" "src\\parser.o" 

@@ -1,0 +1,212 @@
+/*
+ ============================================================================
+ Name        : Examen_Laboratorio_I.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "Arcade.h"
+#include "Controller.h"
+
+#define LEN_ARCHIVO 51
+#define PRIMER_INGRESO 1
+int main(void)
+{
+
+
+
+	setbuf(stdout, NULL);
+	char pathArchivoArcades[LEN_ARCHIVO] = "arcades.csv";
+	char pathArchivoJuegos[LEN_ARCHIVO] = "juegos.txt";
+	char pathArchivoArcadesMultijugador[LEN_ARCHIVO] = "multijugador.csv";
+
+	int opcionElegida;
+	int estadoOperacion;
+	LinkedList* lista;
+
+	eAuxiliar* elemento;
+	char juego [64];
+	/*
+	 * eArcade* elemento;
+	elemento = eArcade_newParametrosDiferenciandoTiposDeDatos(14, "aaawwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasssssssssssssssssssssssssssssssssssssssssaaaaaaaaaaaaaaaa", "pppppppppppppppwwwwwwwwwwwwwwwwwwwppppssssssssssssssssssssssssssssssssssssssspppppppppppppppppppppppppppppppppppppp", "rrrsssssssssssssssssssssssssssssssssssswwwwwwwwwwwwwwwwwwwwwwwwwwwsssssssssssssssssssrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", 1, 7, 150);
+
+	//printf("%d", elemento->idArcade);
+
+
+	eArcade_ImprimirEncabezadoDeDatos(1);
+	eArcade_ImprimirFilaDeDatos(elemento, 1);
+	eArcade_ImprimirEncabezadoDeDatos(2);
+	eArcade_ImprimirFilaDeDatos(elemento, 2);
+
+	eArcade_ImprimirEncabezadoDeDatos(2);
+	eArcade_ImprimirFilaVaciaDeDatos(2);
+	eArcade_ImprimirEncabezadoDeDatos(1);
+	eArcade_ImprimirFilaVaciaDeDatos(1);
+*/
+	LinkedList* punteroALinkedlistArcade;
+
+	punteroALinkedlistArcade = ll_newLinkedList();
+
+
+
+	//controller_loadFromText(pathArchivoArcades, punteroALinkedlistArcade);
+
+	if(punteroALinkedlistArcade != NULL && eArcade_getLastOrNextId(PRIMER_INGRESO) >= 0)
+		{
+			do{
+				estadoOperacion = menu_ImprimirMenuPrincipal(&opcionElegida);
+				if(utn_comprobarEstadoDeOperacion(estadoOperacion))
+				{
+					switch(opcionElegida)
+					{
+						case 1:
+							//if(menu_EsPosibleOperarMenu(banderaTexto))
+							//{
+								estadoOperacion = controller_loadFromText(pathArchivoArcades, punteroALinkedlistArcade);
+								if(utn_comprobarEstadoDeOperacion(estadoOperacion) && !estadoOperacion)
+								{
+									//controller_ListArcades(punteroALinkedlistArcade);
+									//banderaTexto = ARCHIVO_TEXTO_CARGADO;
+									//banderaBinario = ARCHIVO_TEXTO_CARGADO;
+								}
+
+								//if(estadoOperacion == ERROR_ARCHIVO_TEXTO_NO_EXISTE && respuestaPrimeraCargaBinario == ERROR_ARCHIVO_BINARIO_NO_EXISTE)
+								//{
+								//	menu_mensajesAlerta(ARCHIVOS_INEXISTENTES);
+								//	banderaHabilitarCreacionDeArchivos = SE_HABILITA_CREACION_ARCHIVOS;
+								//}
+							//}
+							break;
+						case 2:
+							estadoOperacion = controller_addArcade(punteroALinkedlistArcade, pathArchivoArcades);
+							if(utn_comprobarEstadoDeOperacion(estadoOperacion))
+							{
+								//banderaRealizoUnaModificacionEnSistema = MODIFICACION_REALIZADA_EN_LISTA;
+								//banderaCargarTexto = ARCHIVO_SIN_CARGAR;
+								//banderaCargarBinario = ARCHIVO_SIN_CARGAR;
+							}
+							break;
+						case 3:
+							estadoOperacion= controller_editArcade(punteroALinkedlistArcade, pathArchivoArcades);
+							if(utn_comprobarEstadoDeOperacion(estadoOperacion))
+							{
+								//banderaRealizoUnaModificacionEnSistema = MODIFICACION_REALIZADA_EN_LISTA;
+								//banderaCargarTexto = ARCHIVO_SIN_CARGAR;
+								//banderaCargarBinario = ARCHIVO_SIN_CARGAR;
+							}
+							break;
+						case 4:
+							estadoOperacion = controller_removeArcade(punteroALinkedlistArcade, pathArchivoArcades);
+							if(utn_comprobarEstadoDeOperacion(estadoOperacion))
+							{
+								//banderaRealizoUnaModificacionEnSistema = MODIFICACION_REALIZADA_EN_LISTA;
+								//banderaCargarTexto = ARCHIVO_SIN_CARGAR;
+								//banderaCargarBinario = ARCHIVO_SIN_CARGAR;
+							}
+							break;
+						case 5:
+							controller_listarArcadesOrdenados(punteroALinkedlistArcade);
+							//estadoOperacion = controller_ListArcades(punteroALinkedlistArcade);
+							//utn_comprobarEstadoDeOperacion(estadoOperacion);
+							break;
+						case 6:
+							controller_generarArchivoDeJuegos(punteroALinkedlistArcade, pathArchivoJuegos);
+							break;
+						case 7:
+
+							controller_generarArchivoConArcadesMultijugador(punteroALinkedlistArcade, pathArchivoArcadesMultijugador);
+
+
+							break;
+						case 8:
+							controller_loadFromText(pathArchivoArcadesMultijugador, punteroALinkedlistArcade);
+							break;
+						case 9:
+							estadoOperacion = controller_actualizarCantidadDeFichas(punteroALinkedlistArcade, pathArchivoArcades);
+							utn_comprobarEstadoDeOperacion(estadoOperacion);
+							break;
+					/*	case 7:
+							estadoOperacion =  controller_sortEmployee(listaEmpleados);
+							if(utn_comprobarEstadoDeOperacion(estadoOperacion) && !estadoOperacion)
+							{
+								banderaRealizoUnaModificacionEnSistema = MODIFICACION_REALIZADA_EN_LISTA;
+								banderaCargarTexto = ARCHIVO_SIN_CARGAR;
+								banderaCargarBinario = ARCHIVO_SIN_CARGAR;
+							}
+							break;
+						case 8:
+							if((banderaBinario == ARCHIVO_BINARIO_CARGADO || banderaTexto == ARCHIVO_TEXTO_CARGADO) || banderaHabilitarCreacionDeArchivos)
+							{
+								esListaVacia = ll_isEmpty(listaEmpleados);
+								sePuedeGuardar = menu_guardarListaVaciaEnArchivo(esListaVacia);
+								if(sePuedeGuardar == SI)
+								{
+									estadoOperacion = controller_saveAsText(pathArchivoTexto, listaEmpleados);
+									if(utn_comprobarEstadoDeOperacion(estadoOperacion))
+									{
+										banderaCargarTexto = ARCHIVO_CARGADO;
+										banderaHabilitarCreacionDeArchivos = SE_HABILITA_CREACION_ARCHIVOS;
+
+										banderaRealizoUnaModificacionEnSistema = MODIFICACION_REALIZADA_EN_LISTA;
+										banderaBinario = ARCHIVO_CARGADO_EN_SISTEMA;
+										banderaTexto = ARCHIVO_CARGADO_EN_SISTEMA;
+									}
+								}
+							}
+							else
+							{
+								menu_mensajesAlerta(FALTA_CARGAR_ARCHIVOS);
+							}
+								break;
+						case 9:
+							if((banderaBinario == ARCHIVO_BINARIO_CARGADO || banderaTexto == ARCHIVO_TEXTO_CARGADO) || banderaHabilitarCreacionDeArchivos)
+							{
+								esListaVacia = ll_isEmpty(listaEmpleados);
+								sePuedeGuardar = menu_guardarListaVaciaEnArchivo(esListaVacia);
+								if(sePuedeGuardar == SI)
+								{
+									estadoOperacion = controller_saveAsBinary(pathArchivoBinario, listaEmpleados);
+									if(utn_comprobarEstadoDeOperacion(estadoOperacion))
+									{
+										banderaCargarBinario = ARCHIVO_CARGADO;
+										banderaHabilitarCreacionDeArchivos = SE_HABILITA_CREACION_ARCHIVOS;
+										banderaRealizoUnaModificacionEnSistema = MODIFICACION_REALIZADA_EN_LISTA;
+										banderaBinario = ARCHIVO_CARGADO_EN_SISTEMA;
+										banderaTexto = ARCHIVO_CARGADO_EN_SISTEMA;
+									}
+								}
+							}
+							else
+							{
+								menu_mensajesAlerta(FALTA_CARGAR_ARCHIVOS);
+							}
+							break;
+						case 10:
+							estadoOperacion = controller_exitApp(listaEmpleados, banderaCargarTexto, banderaCargarBinario, banderaRealizoUnaModificacionEnSistema);
+							if(utn_comprobarEstadoDeOperacion(estadoOperacion))
+							{
+								opcionElegida = estadoOperacion;
+								if(opcionElegida == SALIR)
+								{
+									if(!ll_clear(listaEmpleados))
+									{
+										ll_deleteLinkedList(listaEmpleados);
+									}
+								}
+							}
+							break;
+							*/
+					}
+				}
+			}while(opcionElegida != 15);
+		}
+	    printf("\n\t\t<--Fin del Programa-->");
+
+
+	return EXIT_SUCCESS;
+}

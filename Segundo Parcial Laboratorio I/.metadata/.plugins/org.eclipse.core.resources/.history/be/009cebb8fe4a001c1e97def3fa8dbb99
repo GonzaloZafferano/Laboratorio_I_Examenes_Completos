@@ -1,0 +1,46 @@
+/*
+ * Controller.h
+ *
+ *  Created on: 5 nov 2021
+ *      Author: GONZALO
+ */
+
+#ifndef CONTROLLER_H_
+#define CONTROLLER_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "LinkedList.h"
+#include "Employee.h"
+#include "ComprobarErrores.h"
+#include "Utn_tomarDatos.h"
+#include "Controller.h"
+#include "parser.h"
+#include "Menu_mensajes.h"
+#include "Arcade.h"
+#include "EntidadAuxiliar.h"
+
+int controller_loadFromText(char* pathArchivo, LinkedList* pLinkedListArcades);
+int controller_loadFromBinary(char* pathArchivo, LinkedList* pLinkedListArcades);
+int controller_loadJuegosFromTxt(LinkedList* pLinkedListJuegos, char* pathArchivo);
+int controller_addArcade(LinkedList* pLinkedListArcades, char* pathArchivo);
+int controller_editArcade(LinkedList* pLinkedListArcades, char* pathArchivo);
+int controller_removeArcade(LinkedList* pLinkedListArcades, char* pathArchivo);
+int controller_listarArcadesOrdenados(LinkedList* pLinkedListArcades);
+int controller_saveAsText(char* pathArchivo , LinkedList* pLinkedListArcades);
+int controller_saveAsBinary(char* pathArchivo, LinkedList* pLinkedListArcades);
+LinkedList* generarListaDeJuegosSinRepetir(LinkedList* pLinkedListArcades);
+int controller_generarArchivoDeJuegos(LinkedList* pLinkedListArcades, char* pathArchivoJuegos);
+
+
+
+
+
+int controller_exitApp(LinkedList* pArraylist, int banderaArchivoTexto, int banderaArchivoBinario, int banderaModificacion);
+
+
+
+
+
+
+#endif /* CONTROLLER_H_ */

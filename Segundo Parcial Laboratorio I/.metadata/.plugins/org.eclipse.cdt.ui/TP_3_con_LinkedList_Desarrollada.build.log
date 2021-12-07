@@ -1,0 +1,15 @@
+20:15:13 **** Rebuild of configuration Debug for project TP_3_con_LinkedList_Desarrollada ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ComprobarErrores.o" "..\\src\\ComprobarErrores.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Menu_mensajes.o" "..\\src\\Menu_mensajes.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Utn_tomarDatos.o" "..\\src\\Utn_tomarDatos.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Employee.o" "..\\src\\Employee.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LinkedList.o" "..\\src\\LinkedList.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ValidarDatos.o" "..\\src\\ValidarDatos.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Controller.o" "..\\src\\Controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\TP_3_con_LinkedList_Desarrollada.o" "..\\src\\TP_3_con_LinkedList_Desarrollada.c" 
+gcc -o TP_3_con_LinkedList_Desarrollada.exe "src\\ComprobarErrores.o" "src\\Controller.o" "src\\Employee.o" "src\\LinkedList.o" "src\\Menu_mensajes.o" "src\\TP_3_con_LinkedList_Desarrollada.o" "src\\Utn_tomarDatos.o" "src\\ValidarDatos.o" "src\\parser.o" 
+
+20:15:16 Build Finished. 0 errors, 0 warnings. (took 2s.468ms)
+
